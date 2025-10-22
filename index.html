@@ -4,53 +4,101 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kelas Interaktif Pintar – Bahasa Indonesia VII</title>
-  <meta name="description" content="Mini web pembelajaran Bahasa Indonesia Kelas VII dengan materi, evaluasi otomatis, dan refleksi guru."/>
+  <meta name="description" content="Mini web pembelajaran Bahasa Indonesia Kelas VII dengan materi, evaluasi otomatis, refleksi guru, dan akses cepat ke ruang murid."/>
   <style>
     :root{
       --coral:#f4a261; --coral-2:#e76f51; --gold:#ffd08a; --ink:#1f2d3a; --paper:#fff7ef;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Calibri,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,var(--paper),#ffe6cc);color:var(--ink)}
-    header{position:sticky;top:0;background:var(--coral);color:#fff;padding:14px 16px;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    /* ====== GLOBAL + BACKGROUND ====== */
+    body{
+      margin:0;
+      font-family: Calibri, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      /* Fallback gradient jika gambar belum ter-upload */
+      background: linear-gradient(135deg, var(--paper), #ffe6cc);
+      min-height:100dvh;
+      position:relative;
+    }
+    /* Layer gambar latar dengan overlay supaya teks tetap terbaca */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      z-index:-2;
+      background: url('bg-pmd.jpg') center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0;
+      z-index:-1;
+      background: radial-gradient(1200px 600px at 15% 10%, rgba(255,255,255,.92), rgba(255,255,255,.70) 40%, rgba(255,255,255,.55) 60%, rgba(255,255,255,.35) 75%, rgba(255,255,255,.15) 100%),
+                  linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.85));
+      /* overlay lembut agar konten kontras di atas foto */
+    }
+
+    header{
+      position:sticky; top:0; z-index:10;
+      background: rgba(244,162,97,.95); /* coral semi transparan */
+      color:#fff; backdrop-filter: blur(6px);
+      padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.08)
+    }
     .wrap{max-width:980px;margin:0 auto;padding:0 14px}
     .brand{font-weight:700;font-size:1.1rem;letter-spacing:.3px}
     nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    nav a{background:var(--gold);color:#472b00;text-decoration:none;padding:8px 12px;border-radius:999px;font-weight:700}
-    main{padding:22px 0}
+    nav a{
+      background:var(--gold); color:#472b00; text-decoration:none;
+      padding:8px 12px; border-radius:999px; font-weight:700;
+      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease
+    }
+    nav a:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.08);filter:brightness(1.05)}
+    nav a:active{transform:translateY(1px);box-shadow:0 3px 0 rgba(0,0,0,.06)}
+
+    main{padding:24px 0}
     h1{margin:10px 0 0}
     h2{color:#b44d2b;margin:12px 0}
-    .card{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);padding:18px;margin:14px 0}
-   .btn {
-  display: inline-block;
-  background: var(--coral-2);
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: 700;
-  box-shadow: 0 5px 0 #b5533d;
-  transition: all 0.2s ease-in-out;
-}
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 0 #b5533d;
-  filter: brightness(1.05);
-}
+    /* ====== KOMPONEN ====== */
+    .card{
+      background:#fff; border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+      padding:18px; margin:14px 0;
+      transition:transform .25s ease, box-shadow .25s ease
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 10px 24px rgba(0,0,0,.12)}
 
-.btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 3px 0 #b5533d;
-  filter: brightness(0.95);
-}
+    .btn{
+      display:inline-block; background:var(--coral-2); color:#fff; text-decoration:none;
+      padding:10px 14px; border-radius:10px; font-weight:700;
+      box-shadow:0 5px 0 #b5533d; transition:all .2s ease-in-out
+    }
+    .btn:hover{transform:translateY(-3px); box-shadow:0 7px 0 #b5533d; filter:brightness(1.05)}
+    .btn:active{transform:translateY(2px); box-shadow:0 3px 0 #b5533d; filter:brightness(.95)}
 
-    .grid{display:grid;gap:14px}
+    .btn-ghost{
+      display:inline-block; text-decoration:none; font-weight:700;
+      padding:10px 14px; border-radius:10px; color:#143b4f;
+      background:#ffdcb1; box-shadow:0 4px 0 rgba(0,0,0,.06);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease
+    }
+    .btn-ghost:hover{transform:translateY(-3px); box-shadow:0 6px 0 rgba(0,0,0,.08); filter:brightness(1.05)}
+    .btn-ghost:active{transform:translateY(2px); box-shadow:0 3px 0 rgba(0,0,0,.06)}
+
+    .grid{display:grid; gap:14px}
     @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
-    footer{background:var(--coral);color:#fff;text-align:center;padding:12px;margin-top:24px}
-    .note{font-size:.9rem;opacity:.85}
-    .embed{position:relative;width:100%;padding-top:60%}
-    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
+
+    footer{background:rgba(244,162,97,.95); color:#fff; text-align:center; padding:12px; margin-top:24px}
+    .note{font-size:.9rem; opacity:.85}
+
+    /* Embed responsif */
+    .embed{position:relative; width:100%; padding-top:60%}
+    .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:12px}
+
     ul.clean{margin:0 0 6px 18px}
+
+    /* Efek muncul saat discroll */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1; transform:translateY(0)}
   </style>
 </head>
 <body>
@@ -58,6 +106,7 @@
     <div class="wrap">
       <div class="brand">Kelas Interaktif Pintar • Bahasa Indonesia Kelas VII</div>
       <nav>
+        <a href="#ruang-murid">Ruang Murid</a>
         <a href="#materi">Materi</a>
         <a href="#evaluasi">Evaluasi</a>
         <a href="#refleksi">Refleksi</a>
@@ -67,15 +116,38 @@
   </header>
 
   <main class="wrap">
-    <section class="card">
+    <!-- HERO / PENGANTAR -->
+    <section class="card reveal">
       <h1>Selamat Datang</h1>
-      <p class="note">Portal ringkas untuk belajar mandiri, latihan otomatis, dan dokumentasi inovasi guru. Akses lewat QR di kelas, atau langsung dari tautan ini.</p>
+      <p class="note">Portal ringkas untuk belajar mandiri, latihan otomatis, dan dokumentasi inovasi guru. Latar belakang mengikuti tema “Pembelajaran Mendalam.”</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn" href="#ruang-murid">Masuk Ruang Murid</a>
+        <a class="btn-ghost" href="#materi">Buka Materi</a>
+      </div>
     </section>
 
+    <!-- RUANG MURID -->
+    <section id="ruang-murid">
+      <h2>Ruang Murid</h2>
+      <div class="grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0">Latihan Soal Resmi</h3>
+          <p>Akses latihan soal dari Kemendikdasmen.</p>
+          <a class="btn" href="https://murid.kemendikdasmen.go.id/latihan-soal" target="_blank" rel="noopener">Buka latihan-soal</a>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0">Ruang Murid Nasional</h3>
+          <p>Materi dan sumber belajar di Rumah Pendidikan.</p>
+          <a class="btn" href="https://rumah.pendidikan.go.id/ruang/murid" target="_blank" rel="noopener">Buka ruang murid</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERI -->
     <section id="materi">
       <h2>Materi • Teks Deskriptif</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card reveal">
           <p><b>Tujuan:</b> Mengidentifikasi ciri-ciri dan menyusun paragraf deskriptif.</p>
           <ul class="clean">
             <li>Fokus pancaindra</li>
@@ -85,7 +157,7 @@
           <!-- GANTI LINK VIDEO -->
           <a class="btn" href="https://youtu.be/VIDEO_KAMU" target="_blank" rel="noopener">Tonton Penjelasan</a>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <p><b>Lembar Materi:</b> contoh bacaan “Lingkungan Sekolahku.”</p>
           <!-- GANTI LINK DRIVE -->
           <a class="btn" href="https://drive.google.com/FILE_MATERI" target="_blank" rel="noopener">Unduh Materi (PDF)</a>
@@ -93,30 +165,33 @@
       </div>
     </section>
 
+    <!-- EVALUASI -->
     <section id="evaluasi">
       <h2>Evaluasi Otomatis</h2>
-      <div class="card">
+      <div class="card reveal">
         <p>Kerjakan kuis berikut. Nilai masuk otomatis ke spreadsheet guru.</p>
         <!-- GANTI FORM_ID DENGAN ID GOOGLE FORM KAMU -->
         <div class="embed">
-          <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true">Memuat…</iframe>
+          <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" loading="lazy">Memuat…</iframe>
         </div>
         <p class="note">Jika tidak tampil, <a href="https://forms.gle/LINK_FORM" target="_blank" rel="noopener">buka Form di tab baru</a>.</p>
       </div>
     </section>
 
+    <!-- REFLEKSI -->
     <section id="refleksi">
       <h2>Refleksi Guru</h2>
-      <div class="card">
+      <div class="card reveal">
         <p>Catat apa yang berhasil, tantangan, dan perbaikan pertemuan berikutnya.</p>
         <!-- GANTI LINK REFLEKSI -->
         <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank" rel="noopener">Isi Refleksi</a>
       </div>
     </section>
 
+    <!-- GALERI -->
     <section id="galeri">
       <h2>Galeri Kegiatan</h2>
-      <div class="card">
+      <div class="card reveal">
         <p>Dokumentasi penggunaan QR, latihan, dan karya siswa.</p>
         <!-- GANTI FOLDER DRIVE -->
         <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank" rel="noopener">Buka Folder Galeri</a>
@@ -125,5 +200,13 @@
   </main>
 
   <footer>© 2025 Kelas Interaktif Pintar • SMPN 4 Batu Ampar</footer>
+
+  <script>
+    // Tampilkan elemen .reveal saat masuk layar
+    const ob = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => ob.observe(el));
+  </script>
 </body>
 </html>
