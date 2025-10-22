@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kelas Interaktif Pintar – Portal Pembelajaran SMP</title>
-  <meta name="description" content="Portal pembelajaran Bahasa Indonesia Kelas VII–IX: materi, evaluasi otomatis, refleksi guru, dan galeri.">
+  <meta name="description" content="Portal pembelajaran interaktif untuk SMP kelas 7–9, mencakup materi, evaluasi otomatis, refleksi guru, dan galeri kegiatan.">
 
   <style>
     :root{
@@ -14,17 +14,16 @@
     *{box-sizing:border-box}
     html,body{scroll-behavior:smooth}
     body{
-      margin:0; font-family:Calibri,system-ui,-apple-system,"Segoe UI",Arial,sans-serif; color:var(--ink);
-      min-height:100dvh;
+      margin:0; font-family:Calibri,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      color:var(--ink); min-height:100dvh;
       background:linear-gradient(135deg,var(--paper),#ffe6cc);
     }
-    /* BACKGROUND FOTO – ganti ke nama file kamu kalau perlu */
+    /* latar belakang */
     body::before{
       content:""; position:fixed; inset:0; z-index:-2;
-      background:url('bg-pmd.jpg') center/cover no-repeat; /* kalau filenya bg-pmd.jpg.jpg, ubah baris ini */
+      background:url('bg-pmd.jpg') center/cover no-repeat;
       filter:saturate(1.06) contrast(1.03);
     }
-    /* overlay lembut agar teks terbaca */
     body::after{
       content:""; position:fixed; inset:0; z-index:-1;
       background:radial-gradient(1100px 560px at 12% 8%,rgba(255,255,255,.92),rgba(255,255,255,.70) 40%,rgba(255,255,255,.48) 70%,rgba(255,255,255,.22)),
@@ -85,7 +84,7 @@
 <body>
   <header id="top">
     <div class="wrap">
-      <div class="brand">Kelas Interaktif Pintar • Bahasa Indonesia Kelas 7 • 8 • 9</div>
+      <div class="brand">Kelas Interaktif Pintar • Portal Pembelajaran SMP</div>
       <nav>
         <a href="#ruang-murid">Ruang Murid</a>
         <a href="#kelas7">Kelas 7</a>
@@ -98,13 +97,12 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO -->
     <section class="card show">
-      <h1>Selamat Datang</h1>
-      <p class="note">Portal belajar ringkas untuk kelas VII–IX. Akses materi, evaluasi otomatis, dan dokumentasi inovasi guru. Semua aman dibuka lewat QR di kelas.</p>
+      <h1>Selamat Datang di Kelas Interaktif Pintar</h1>
+      <p class="note">Portal pembelajaran untuk siswa SMP, menyediakan materi, evaluasi, dan refleksi interaktif untuk semua mata pelajaran kelas 7–9.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn" href="#ruang-murid">Masuk Ruang Murid</a>
-        <a class="btn" href="#kelas7">Mulai Kelas 7</a>
+        <a class="btn" href="#kelas7">Mulai Belajar</a>
       </div>
     </section>
 
@@ -114,97 +112,77 @@
       <div class="grid">
         <div class="card">
           <h3>Latihan Soal Resmi</h3>
-          <p>Akses latihan dari Kemendikdasmen.</p>
+          <p>Akses latihan soal dari Kemendikdasmen.</p>
           <a class="btn" target="_blank" rel="noopener" href="https://murid.kemendikdasmen.go.id/latihan-soal">Buka latihan-soal</a>
         </div>
         <div class="card">
-          <h3>Ruang Murid Nasional</h3>
-          <p>Materi & sumber belajar di Rumah Pendidikan.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://rumah.pendidikan.go.id/ruang/murid">Buka ruang murid</a>
+          <h3>Ruang Belajar Nasional</h3>
+          <p>Materi dan sumber belajar di Rumah Pendidikan.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://rumah.pendidikan.go.id/ruang/murid">Buka ruang belajar</a>
         </div>
       </div>
     </section>
 
     <!-- KELAS 7 -->
     <section id="kelas7">
-      <h2>Kelas 7 • Teks Deskriptif</h2>
+      <h2>Kelas 7 • Materi Umum</h2>
       <div class="grid">
         <div class="card">
           <span class="pill">Materi</span>
-          <h3>Fokus pancaindra, detail spesifik, kosakata deskriptif</h3>
-          <ul class="clean">
-            <li>Identifikasi ciri-ciri teks deskriptif</li>
-            <li>Menyusun paragraf deskriptif</li>
-          </ul>
-          <!-- GANTI LINK VIDEO/PDF -->
+          <p>Pembelajaran interaktif untuk berbagai topik dasar di kelas 7.</p>
           <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS7">Tonton Penjelasan</a>
           <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS7" style="margin-left:6px">Unduh Materi (PDF)</a>
         </div>
         <div class="card">
-          <span class="pill">Evaluasi Otomatis</span>
-          <p>Nilai masuk otomatis ke spreadsheet.</p>
+          <span class="pill">Evaluasi</span>
+          <p>Kuis dan latihan otomatis.</p>
           <div class="embed">
-            <!-- GANTI FORM_ID -->
             <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS7/viewform?embedded=true" loading="lazy">Memuat…</iframe>
           </div>
-          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS7">buka di tab baru</a>.</p>
         </div>
       </div>
     </section>
 
     <!-- KELAS 8 -->
     <section id="kelas8">
-      <h2>Kelas 8 • Teks Eksposisi</h2>
+      <h2>Kelas 8 • Materi Pengembangan</h2>
       <div class="grid">
         <div class="card">
-          <span class="pill">Materi</span>
-          <h3>Gagasan, argumentasi, dan penegasan ulang</h3>
-          <!-- GANTI LINK VIDEO/PDF -->
-          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS8">Tonton Penjelasan</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS8" style="margin-left:6px">Unduh Materi (PDF)</a>
+          <p>Materi dan penugasan tematik kelas 8.</p>
+          <a class="btn" target="_blank" href="https://youtu.be/VIDEO_KELAS8">Tonton Penjelasan</a>
         </div>
         <div class="card">
-          <span class="pill">Evaluasi Otomatis</span>
-          <p>Soal pilihan ganda & uraian singkat.</p>
+          <p>Latihan online dengan penilaian otomatis.</p>
           <div class="embed">
-            <!-- GANTI FORM_ID -->
             <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS8/viewform?embedded=true" loading="lazy">Memuat…</iframe>
           </div>
-          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS8">buka di tab baru</a>.</p>
         </div>
       </div>
     </section>
 
     <!-- KELAS 9 -->
     <section id="kelas9">
-      <h2>Kelas 9 • Teks Negosiasi</h2>
+      <h2>Kelas 9 • Materi Lanjutan</h2>
       <div class="grid">
         <div class="card">
-          <span class="pill">Materi</span>
-          <h3>Struktur, kaidah kebahasaan, strategi tawar-menawar</h3>
-          <!-- GANTI LINK VIDEO/PDF -->
-          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS9">Tonton Penjelasan</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS9" style="margin-left:6px">Unduh Materi (PDF)</a>
+          <p>Materi, latihan, dan video pembelajaran kelas 9.</p>
+          <a class="btn" href="https://youtu.be/VIDEO_KELAS9" target="_blank">Tonton Video</a>
         </div>
         <div class="card">
-          <span class="pill">Evaluasi Otomatis</span>
-          <p>Nilai langsung rekap di Google Sheet.</p>
+          <p>Evaluasi dan latihan pemantapan ujian.</p>
           <div class="embed">
-            <!-- GANTI FORM_ID -->
             <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS9/viewform?embedded=true" loading="lazy">Memuat…</iframe>
           </div>
-          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS9">buka di tab baru</a>.</p>
         </div>
       </div>
     </section>
 
     <!-- REFLEKSI -->
     <section id="refleksi">
-      <h2>Refleksi Guru</h2>
+      <h2>Refleksi Pembelajaran</h2>
       <div class="card">
-        <p>Catat yang berhasil, tantangan, dan perbaikan pertemuan berikutnya.</p>
-        <!-- GANTI LINK REFLEKSI -->
-        <a class="btn" target="_blank" rel="noopener" href="https://forms.gle/LINK_REFLEKSI">Isi Refleksi</a>
+        <p>Catat hasil belajar, kendala, dan rencana perbaikan.</p>
+        <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank">Isi Refleksi</a>
       </div>
     </section>
 
@@ -213,16 +191,12 @@
       <h2>Galeri Kegiatan</h2>
       <div class="three">
         <div class="card">
-          <p>Dokumentasi QR di kelas.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/DRIVE_GALERI">Buka Folder Galeri</a>
+          <p>Dokumentasi kegiatan belajar.</p>
+          <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank">Buka Galeri</a>
         </div>
         <div class="card">
-          <p>Poster sosialisasi & unggahan media sekolah.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://instagram.com/AKUN_SEKOLAH">Lihat IG Sekolah</a>
-        </div>
-        <div class="card">
-          <p>Manual/Panduan singkat untuk guru & siswa.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/PDF_MANUAL">Unduh Panduan (PDF)</a>
+          <p>Poster dan promosi inovasi pembelajaran.</p>
+          <a class="btn" href="https://instagram.com/AKUN_SEKOLAH" target="_blank">Lihat Media Sosial</a>
         </div>
       </div>
     </section>
@@ -230,22 +204,21 @@
 
   <footer>
     <div class="wrap">
-      <div>© 2025 Kelas Interaktif Pintar • SMPN 4 Batu Ampar</div>
+      <div>© 2025 Kelas Interaktif Pintar – Portal Pembelajaran SMP</div>
       <div style="margin-top:8px">
         <img alt="QR Kelas Interaktif" width="120" height="120"
-             src="https://api.qrserver.com/v1/create-qr-code/?data=https://hafizahhafiz240717-ai.github.io/kelas-interaktif-pintar/&size=120x120">
+          src="https://api.qrserver.com/v1/create-qr-code/?data=https://hafizahhafiz240717-ai.github.io/kelas-interaktif-pintar/&size=120x120">
       </div>
-      <div class="note" style="margin-top:6px">Scan untuk membuka situs dari HP</div>
+      <div class="note" style="margin-top:6px">Scan untuk membuka situs di ponsel</div>
     </div>
   </footer>
 
   <script>
-    // Header berubah warna saat discroll
+    // ubah warna header saat discroll
     addEventListener('scroll', () => {
       document.querySelector('header').classList.toggle('scrolled', scrollY > 50);
     });
-
-    // Animasi muncul saat scroll (IntersectionObserver)
+    // animasi card muncul halus
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
     }, {threshold: .12});
