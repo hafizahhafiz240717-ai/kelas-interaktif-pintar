@@ -3,54 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kelas Interaktif Pintar – Bahasa Indonesia VII</title>
-  <meta name="description" content="Mini web pembelajaran Bahasa Indonesia Kelas VII dengan materi, evaluasi otomatis, refleksi guru, dan akses cepat ke ruang murid."/>
+  <title>Kelas Interaktif Pintar – Bhs Indonesia Kelas 7 • 8 • 9</title>
+  <meta name="description" content="Portal pembelajaran Bahasa Indonesia Kelas VII–IX: materi, evaluasi otomatis, refleksi guru, dan galeri.">
+
   <style>
     :root{
       --coral:#f4a261; --coral-2:#e76f51; --gold:#ffd08a; --ink:#1f2d3a; --paper:#fff7ef;
+      --shadow:0 6px 18px rgba(0,0,0,.10);
     }
     *{box-sizing:border-box}
-    /* ====== GLOBAL + BACKGROUND ====== */
+    html,body{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family: Calibri, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      color:var(--ink);
-      /* Fallback gradient jika gambar belum ter-upload */
-      background: linear-gradient(135deg, var(--paper), #ffe6cc);
+      margin:0; font-family:Calibri,system-ui,-apple-system,"Segoe UI",Arial,sans-serif; color:var(--ink);
       min-height:100dvh;
-      position:relative;
+      background:linear-gradient(135deg,var(--paper),#ffe6cc);
     }
-    /* Layer gambar latar dengan overlay supaya teks tetap terbaca */
+    /* BACKGROUND FOTO – ganti ke nama file kamu kalau perlu */
     body::before{
-      content:"";
-      position:fixed; inset:0;
-      z-index:-2;
-      background: url('bg-pmd.jpg.jpg')
- center/cover no-repeat;
-      filter: saturate(1.05) contrast(1.02);
+      content:""; position:fixed; inset:0; z-index:-2;
+      background:url('bg-pmd.jpg') center/cover no-repeat; /* kalau filenya bg-pmd.jpg.jpg, ubah baris ini */
+      filter:saturate(1.06) contrast(1.03);
     }
+    /* overlay lembut agar teks terbaca */
     body::after{
-      content:"";
-      position:fixed; inset:0;
-      z-index:-1;
-      background: radial-gradient(1200px 600px at 15% 10%, rgba(255,255,255,.92), rgba(255,255,255,.70) 40%, rgba(255,255,255,.55) 60%, rgba(255,255,255,.35) 75%, rgba(255,255,255,.15) 100%),
-                  linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.85));
-      /* overlay lembut agar konten kontras di atas foto */
+      content:""; position:fixed; inset:0; z-index:-1;
+      background:radial-gradient(1100px 560px at 12% 8%,rgba(255,255,255,.92),rgba(255,255,255,.70) 40%,rgba(255,255,255,.48) 70%,rgba(255,255,255,.22)),
+                 linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,.9));
+      pointer-events:none;
     }
 
     header{
       position:sticky; top:0; z-index:10;
-      background: rgba(244,162,97,.95); /* coral semi transparan */
-      color:#fff; backdrop-filter: blur(6px);
-      padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.08)
+      background:rgba(244,162,97,.95); color:#fff; backdrop-filter:blur(6px);
+      padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.1); transition:background .25s ease;
     }
-    .wrap{max-width:980px;margin:0 auto;padding:0 14px}
-    .brand{font-weight:700;font-size:1.1rem;letter-spacing:.3px}
+    header.scrolled{ background:rgba(231,111,81,.97) }
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+    .brand{font-weight:800;font-size:1.1rem;letter-spacing:.3px}
     nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
     nav a{
-      background:var(--gold); color:#472b00; text-decoration:none;
-      padding:8px 12px; border-radius:999px; font-weight:700;
-      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease
+      background:var(--gold); color:#472b00; text-decoration:none; padding:8px 12px;
+      border-radius:999px; font-weight:700; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease
     }
     nav a:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.08);filter:brightness(1.05)}
     nav a:active{transform:translateY(1px);box-shadow:0 3px 0 rgba(0,0,0,.06)}
@@ -58,15 +51,19 @@
     main{padding:24px 0}
     h1{margin:10px 0 0}
     h2{color:#b44d2b;margin:12px 0}
+    h3{margin:0 0 6px}
 
-    /* ====== KOMPONEN ====== */
     .card{
-      background:#fff; border-radius:16px;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-      padding:18px; margin:14px 0;
-      transition:transform .25s ease, box-shadow .25s ease
+      background:#fff; border-radius:16px; box-shadow:var(--shadow);
+      padding:18px; margin:14px 0; transition:transform .25s ease, box-shadow .25s ease;
+      opacity:0; transform:translateY(18px);
     }
     .card:hover{transform:translateY(-6px); box-shadow:0 10px 24px rgba(0,0,0,.12)}
+    .show{opacity:1; transform:translateY(0)}
+    .grid{display:grid; gap:14px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .three{display:grid; gap:14px}
+    @media(min-width:900px){.three{grid-template-columns:1fr 1fr 1fr}}
 
     .btn{
       display:inline-block; background:var(--coral-2); color:#fff; text-decoration:none;
@@ -76,40 +73,24 @@
     .btn:hover{transform:translateY(-3px); box-shadow:0 7px 0 #b5533d; filter:brightness(1.05)}
     .btn:active{transform:translateY(2px); box-shadow:0 3px 0 #b5533d; filter:brightness(.95)}
 
-    .btn-ghost{
-      display:inline-block; text-decoration:none; font-weight:700;
-      padding:10px 14px; border-radius:10px; color:#143b4f;
-      background:#ffdcb1; box-shadow:0 4px 0 rgba(0,0,0,.06);
-      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease
-    }
-    .btn-ghost:hover{transform:translateY(-3px); box-shadow:0 6px 0 rgba(0,0,0,.08); filter:brightness(1.05)}
-    .btn-ghost:active{transform:translateY(2px); box-shadow:0 3px 0 rgba(0,0,0,.06)}
+    .pill{display:inline-block;background:#ffdcb1;color:#143b4f;padding:6px 10px;border-radius:999px;font-weight:700}
+    .note{font-size:.92rem;opacity:.86}
+    .embed{position:relative;width:100%;padding-top:60%}
+    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
+    ul.clean{margin:8px 0 8px 18px}
 
-    .grid{display:grid; gap:14px}
-    @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
-
-    footer{background:rgba(244,162,97,.95); color:#fff; text-align:center; padding:12px; margin-top:24px}
-    .note{font-size:.9rem; opacity:.85}
-
-    /* Embed responsif */
-    .embed{position:relative; width:100%; padding-top:60%}
-    .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:12px}
-
-    ul.clean{margin:0 0 6px 18px}
-
-    /* Efek muncul saat discroll */
-    .reveal{opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease}
-    .reveal.show{opacity:1; transform:translateY(0)}
+    footer{background:rgba(244,162,97,.95); color:#fff; text-align:center; padding:14px; margin-top:28px}
   </style>
 </head>
 <body>
-  <header>
+  <header id="top">
     <div class="wrap">
-      <div class="brand">Kelas Interaktif Pintar • Bahasa Indonesia Kelas VII</div>
+      <div class="brand">Kelas Interaktif Pintar • Bahasa Indonesia Kelas 7 • 8 • 9</div>
       <nav>
         <a href="#ruang-murid">Ruang Murid</a>
-        <a href="#materi">Materi</a>
-        <a href="#evaluasi">Evaluasi</a>
+        <a href="#kelas7">Kelas 7</a>
+        <a href="#kelas8">Kelas 8</a>
+        <a href="#kelas9">Kelas 9</a>
         <a href="#refleksi">Refleksi</a>
         <a href="#galeri">Galeri</a>
       </nav>
@@ -117,13 +98,13 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO / PENGANTAR -->
-    <section class="card reveal">
+    <!-- HERO -->
+    <section class="card show">
       <h1>Selamat Datang</h1>
-      <p class="note">Portal ringkas untuk belajar mandiri, latihan otomatis, dan dokumentasi inovasi guru. Latar belakang mengikuti tema “Pembelajaran Mendalam.”</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap">
+      <p class="note">Portal belajar ringkas untuk kelas VII–IX. Akses materi, evaluasi otomatis, dan dokumentasi inovasi guru. Semua aman dibuka lewat QR di kelas.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn" href="#ruang-murid">Masuk Ruang Murid</a>
-        <a class="btn-ghost" href="#materi">Buka Materi</a>
+        <a class="btn" href="#kelas7">Mulai Kelas 7</a>
       </div>
     </section>
 
@@ -131,83 +112,144 @@
     <section id="ruang-murid">
       <h2>Ruang Murid</h2>
       <div class="grid">
-        <div class="card reveal">
-          <h3 style="margin-top:0">Latihan Soal Resmi</h3>
-          <p>Akses latihan soal dari Kemendikdasmen.</p>
-          <a class="btn" href="https://murid.kemendikdasmen.go.id/latihan-soal" target="_blank" rel="noopener">Buka latihan-soal</a>
+        <div class="card">
+          <h3>Latihan Soal Resmi</h3>
+          <p>Akses latihan dari Kemendikdasmen.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://murid.kemendikdasmen.go.id/latihan-soal">Buka latihan-soal</a>
         </div>
-        <div class="card reveal">
-          <h3 style="margin-top:0">Ruang Murid Nasional</h3>
-          <p>Materi dan sumber belajar di Rumah Pendidikan.</p>
-          <a class="btn" href="https://rumah.pendidikan.go.id/ruang/murid" target="_blank" rel="noopener">Buka ruang murid</a>
+        <div class="card">
+          <h3>Ruang Murid Nasional</h3>
+          <p>Materi & sumber belajar di Rumah Pendidikan.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://rumah.pendidikan.go.id/ruang/murid">Buka ruang murid</a>
         </div>
       </div>
     </section>
 
-    <!-- MATERI -->
-    <section id="materi">
-      <h2>Materi • Teks Deskriptif</h2>
+    <!-- KELAS 7 -->
+    <section id="kelas7">
+      <h2>Kelas 7 • Teks Deskriptif</h2>
       <div class="grid">
-        <div class="card reveal">
-          <p><b>Tujuan:</b> Mengidentifikasi ciri-ciri dan menyusun paragraf deskriptif.</p>
+        <div class="card">
+          <span class="pill">Materi</span>
+          <h3>Fokus pancaindra, detail spesifik, kosakata deskriptif</h3>
           <ul class="clean">
-            <li>Fokus pancaindra</li>
-            <li>Detail spesifik</li>
-            <li>Kosakata deskriptif</li>
+            <li>Identifikasi ciri-ciri teks deskriptif</li>
+            <li>Menyusun paragraf deskriptif</li>
           </ul>
-          <!-- GANTI LINK VIDEO -->
-          <a class="btn" href="https://youtu.be/VIDEO_KAMU" target="_blank" rel="noopener">Tonton Penjelasan</a>
+          <!-- GANTI LINK VIDEO/PDF -->
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS7">Tonton Penjelasan</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS7" style="margin-left:6px">Unduh Materi (PDF)</a>
         </div>
-        <div class="card reveal">
-          <p><b>Lembar Materi:</b> contoh bacaan “Lingkungan Sekolahku.”</p>
-          <!-- GANTI LINK DRIVE -->
-          <a class="btn" href="https://drive.google.com/FILE_MATERI" target="_blank" rel="noopener">Unduh Materi (PDF)</a>
+        <div class="card">
+          <span class="pill">Evaluasi Otomatis</span>
+          <p>Nilai masuk otomatis ke spreadsheet.</p>
+          <div class="embed">
+            <!-- GANTI FORM_ID -->
+            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS7/viewform?embedded=true" loading="lazy">Memuat…</iframe>
+          </div>
+          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS7">buka di tab baru</a>.</p>
         </div>
       </div>
     </section>
 
-    <!-- EVALUASI -->
-    <section id="evaluasi">
-      <h2>Evaluasi Otomatis</h2>
-      <div class="card reveal">
-        <p>Kerjakan kuis berikut. Nilai masuk otomatis ke spreadsheet guru.</p>
-        <!-- GANTI FORM_ID DENGAN ID GOOGLE FORM KAMU -->
-        <div class="embed">
-          <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" loading="lazy">Memuat…</iframe>
+    <!-- KELAS 8 -->
+    <section id="kelas8">
+      <h2>Kelas 8 • Teks Eksposisi</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="pill">Materi</span>
+          <h3>Gagasan, argumentasi, dan penegasan ulang</h3>
+          <!-- GANTI LINK VIDEO/PDF -->
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS8">Tonton Penjelasan</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS8" style="margin-left:6px">Unduh Materi (PDF)</a>
         </div>
-        <p class="note">Jika tidak tampil, <a href="https://forms.gle/LINK_FORM" target="_blank" rel="noopener">buka Form di tab baru</a>.</p>
+        <div class="card">
+          <span class="pill">Evaluasi Otomatis</span>
+          <p>Soal pilihan ganda & uraian singkat.</p>
+          <div class="embed">
+            <!-- GANTI FORM_ID -->
+            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS8/viewform?embedded=true" loading="lazy">Memuat…</iframe>
+          </div>
+          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS8">buka di tab baru</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KELAS 9 -->
+    <section id="kelas9">
+      <h2>Kelas 9 • Teks Negosiasi</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="pill">Materi</span>
+          <h3>Struktur, kaidah kebahasaan, strategi tawar-menawar</h3>
+          <!-- GANTI LINK VIDEO/PDF -->
+          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS9">Tonton Penjelasan</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS9" style="margin-left:6px">Unduh Materi (PDF)</a>
+        </div>
+        <div class="card">
+          <span class="pill">Evaluasi Otomatis</span>
+          <p>Nilai langsung rekap di Google Sheet.</p>
+          <div class="embed">
+            <!-- GANTI FORM_ID -->
+            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS9/viewform?embedded=true" loading="lazy">Memuat…</iframe>
+          </div>
+          <p class="note">Jika tidak tampil, <a target="_blank" rel="noopener" href="https://forms.gle/LINK_FORM_KELAS9">buka di tab baru</a>.</p>
+        </div>
       </div>
     </section>
 
     <!-- REFLEKSI -->
     <section id="refleksi">
       <h2>Refleksi Guru</h2>
-      <div class="card reveal">
-        <p>Catat apa yang berhasil, tantangan, dan perbaikan pertemuan berikutnya.</p>
+      <div class="card">
+        <p>Catat yang berhasil, tantangan, dan perbaikan pertemuan berikutnya.</p>
         <!-- GANTI LINK REFLEKSI -->
-        <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank" rel="noopener">Isi Refleksi</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://forms.gle/LINK_REFLEKSI">Isi Refleksi</a>
       </div>
     </section>
 
     <!-- GALERI -->
     <section id="galeri">
       <h2>Galeri Kegiatan</h2>
-      <div class="card reveal">
-        <p>Dokumentasi penggunaan QR, latihan, dan karya siswa.</p>
-        <!-- GANTI FOLDER DRIVE -->
-        <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank" rel="noopener">Buka Folder Galeri</a>
+      <div class="three">
+        <div class="card">
+          <p>Dokumentasi QR di kelas.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/DRIVE_GALERI">Buka Folder Galeri</a>
+        </div>
+        <div class="card">
+          <p>Poster sosialisasi & unggahan media sekolah.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://instagram.com/AKUN_SEKOLAH">Lihat IG Sekolah</a>
+        </div>
+        <div class="card">
+          <p>Manual/Panduan singkat untuk guru & siswa.</p>
+          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/PDF_MANUAL">Unduh Panduan (PDF)</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>© 2025 Kelas Interaktif Pintar • SMPN 4 Batu Ampar</footer>
+  <footer>
+    <div class="wrap">
+      <div>© 2025 Kelas Interaktif Pintar • SMPN 4 Batu Ampar</div>
+      <div style="margin-top:8px">
+        <img alt="QR Kelas Interaktif" width="120" height="120"
+             src="https://api.qrserver.com/v1/create-qr-code/?data=https://hafizahhafiz240717-ai.github.io/kelas-interaktif-pintar/&size=120x120">
+      </div>
+      <div class="note" style="margin-top:6px">Scan untuk membuka situs dari HP</div>
+    </div>
+  </footer>
 
   <script>
-    // Tampilkan elemen .reveal saat masuk layar
-    const ob = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => ob.observe(el));
+    // Header berubah warna saat discroll
+    addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', scrollY > 50);
+    });
+
+    // Animasi muncul saat scroll (IntersectionObserver)
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+    }, {threshold: .12});
+    document.querySelectorAll('.card').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
