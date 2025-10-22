@@ -3,95 +3,117 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kelas Interaktif Pintar – Portal Pembelajaran SMP</title>
-  <meta name="description" content="Portal pembelajaran interaktif untuk SMP kelas 7–9, mencakup materi, evaluasi otomatis, refleksi guru, dan galeri kegiatan.">
-
+  <title>Kelas Interaktif Pintar • Portal Pembelajaran SMP</title>
+  <meta name="description" content="Portal interaktif untuk siswa SMP dengan materi, evaluasi, refleksi, dan galeri digital untuk semua mata pelajaran kelas 7–9.">
   <style>
     :root{
-      --coral:#f4a261; --coral-2:#e76f51; --gold:#ffd08a; --ink:#1f2d3a; --paper:#fff7ef;
-      --shadow:0 6px 18px rgba(0,0,0,.10);
+      --coral:#f4a261; 
+      --coral-2:#e76f51; 
+      --gold:#ffd08a; 
+      --ink:#1f2d3a; 
+      --paper:#fff7ef;
     }
-    *{box-sizing:border-box}
-    html,body{scroll-behavior:smooth}
+
+    *{box-sizing:border-box; scroll-behavior:smooth;}
     body{
-      margin:0; font-family:Calibri,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-      color:var(--ink); min-height:100dvh;
-      background:linear-gradient(135deg,var(--paper),#ffe6cc);
+      margin:0;
+      font-family:Calibri, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
     }
-    /* latar belakang */
-  body::before{
-  content:""; position:fixed; inset:0; z-index:-2;
-  background:url('bg-pmd.jpg.jpg') center/cover no-repeat;
-  filter:brightness(1.25) saturate(1.1);
-}
-body::after{
-  content:""; position:fixed; inset:0; z-index:-1;
-  background:
-    radial-gradient(1200px 600px at 20% 10%, rgba(173, 216, 230, 0.8), rgba(135, 206, 250, 0.6) 40%, rgba(100, 149, 237, 0.4) 70%, rgba(70, 130, 180, 0.3)),
-    linear-gradient(180deg, rgba(173, 216, 230, 0.6), rgba(135, 206, 250, 0.7));
-  pointer-events:none;
-}
 
-}
+    /* === LATAR BELAKANG FOTO + WARNA BIRU === */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:-2;
+      background:url('bg-pmd.jpg.jpg') center/cover no-repeat;
+      filter:brightness(1.15);
+    }
 
+    body::after{
+      content:""; position:fixed; inset:0; z-index:-1;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(173,216,230,0.8), rgba(135,206,250,0.6) 40%, rgba(100,149,237,0.4) 70%, rgba(70,130,180,0.3)),
+        linear-gradient(180deg, rgba(173,216,230,0.6), rgba(135,206,250,0.7));
+      pointer-events:none;
     }
 
     header{
       position:sticky; top:0; z-index:10;
-      background:rgba(244,162,97,.95); color:#fff; backdrop-filter:blur(6px);
-      padding:14px 16px; box-shadow:0 2px 10px rgba(0,0,0,.1); transition:background .25s ease;
+      background:var(--coral);
+      color:#fff; padding:14px 16px;
+      box-shadow:0 2px 10px rgba(0,0,0,.08);
     }
-    header.scrolled{ background:rgba(231,111,81,.97) }
-    .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-    .brand{font-weight:800;font-size:1.1rem;letter-spacing:.3px}
-    nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .wrap{max-width:980px; margin:0 auto; padding:0 14px;}
+    .brand{font-weight:700; font-size:1.1rem; letter-spacing:.3px;}
+    nav{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;}
     nav a{
-      background:var(--gold); color:#472b00; text-decoration:none; padding:8px 12px;
-      border-radius:999px; font-weight:700; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease
+      background:var(--gold);
+      color:#472b00;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    nav a:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.08);filter:brightness(1.05)}
-    nav a:active{transform:translateY(1px);box-shadow:0 3px 0 rgba(0,0,0,.06)}
+    nav a:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 10px rgba(0,0,0,.15);
+    }
 
-    main{padding:24px 0}
-    h1{margin:10px 0 0}
-    h2{color:#b44d2b;margin:12px 0}
-    h3{margin:0 0 6px}
-
+    main{padding:22px 0;}
+    h1{margin:10px 0;}
+    h2{color:#b44d2b; margin:12px 0;}
     .card{
-      background:#fff; border-radius:16px; box-shadow:var(--shadow);
-      padding:18px; margin:14px 0; transition:transform .25s ease, box-shadow .25s ease;
-      opacity:0; transform:translateY(18px);
+      background:rgba(255,255,255,0.95);
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+      padding:18px;
+      margin:14px 0;
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .card:hover{transform:translateY(-6px); box-shadow:0 10px 24px rgba(0,0,0,.12)}
-    .show{opacity:1; transform:translateY(0)}
-    .grid{display:grid; gap:14px}
-    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    .three{display:grid; gap:14px}
-    @media(min-width:900px){.three{grid-template-columns:1fr 1fr 1fr}}
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 22px rgba(0,0,0,.12);
+    }
 
     .btn{
-      display:inline-block; background:var(--coral-2); color:#fff; text-decoration:none;
-      padding:10px 14px; border-radius:10px; font-weight:700;
-      box-shadow:0 5px 0 #b5533d; transition:all .2s ease-in-out
+      display:inline-block;
+      background:var(--coral-2);
+      color:#fff;
+      text-decoration:none;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      transition:all .2s ease;
     }
-    .btn:hover{transform:translateY(-3px); box-shadow:0 7px 0 #b5533d; filter:brightness(1.05)}
-    .btn:active{transform:translateY(2px); box-shadow:0 3px 0 #b5533d; filter:brightness(.95)}
+    .btn:hover{
+      filter:brightness(1.1);
+      transform:scale(1.05);
+    }
 
-    .pill{display:inline-block;background:#ffdcb1;color:#143b4f;padding:6px 10px;border-radius:999px;font-weight:700}
-    .note{font-size:.92rem;opacity:.86}
-    .embed{position:relative;width:100%;padding-top:60%}
-    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
-    ul.clean{margin:8px 0 8px 18px}
+    .grid{display:grid; gap:14px;}
+    @media(min-width:860px){.grid{grid-template-columns:1fr 1fr;}}
 
-    footer{background:rgba(244,162,97,.95); color:#fff; text-align:center; padding:14px; margin-top:28px}
+    footer{
+      background:rgba(244,162,97,.95);
+      color:#fff; text-align:center;
+      padding:12px; margin-top:24px;
+      box-shadow:0 -2px 10px rgba(0,0,0,.1);
+    }
+
+    .note{font-size:.9rem; opacity:.85;}
+    .embed{position:relative; width:100%; padding-top:60%;}
+    .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:12px;}
   </style>
 </head>
 <body>
-  <header id="top">
+  <header>
     <div class="wrap">
       <div class="brand">Kelas Interaktif Pintar • Portal Pembelajaran SMP</div>
       <nav>
-        <a href="#ruang-murid">Ruang Murid</a>
+        <a href="#ruangmurid">Ruang Murid</a>
         <a href="#kelas7">Kelas 7</a>
         <a href="#kelas8">Kelas 8</a>
         <a href="#kelas9">Kelas 9</a>
@@ -102,132 +124,90 @@ body::after{
   </header>
 
   <main class="wrap">
-    <section class="card show">
+    <section class="card">
       <h1>Selamat Datang di Kelas Interaktif Pintar</h1>
-      <p class="note">Portal pembelajaran untuk siswa SMP, menyediakan materi, evaluasi, dan refleksi interaktif untuk semua mata pelajaran kelas 7–9.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn" href="#ruang-murid">Masuk Ruang Murid</a>
-        <a class="btn" href="#kelas7">Mulai Belajar</a>
-      </div>
+      <p class="note">
+        Portal pembelajaran untuk siswa SMP, menyediakan materi, evaluasi, refleksi, dan ruang belajar interaktif untuk semua mata pelajaran kelas 7–9.
+      </p>
+      <a href="#ruangmurid" class="btn">Masuk Ruang Murid</a>
+      <a href="#kelas7" class="btn">Mulai Belajar</a>
     </section>
 
-    <!-- RUANG MURID -->
-    <section id="ruang-murid">
+    <section id="ruangmurid">
       <h2>Ruang Murid</h2>
       <div class="grid">
         <div class="card">
           <h3>Latihan Soal Resmi</h3>
           <p>Akses latihan soal dari Kemendikdasmen.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://murid.kemendikdasmen.go.id/latihan-soal">Buka latihan-soal</a>
+          <a class="btn" href="https://murid.kemendikdasmen.go.id/latihan-soal" target="_blank" rel="noopener">Buka latihan-soal</a>
         </div>
         <div class="card">
           <h3>Ruang Belajar Nasional</h3>
-          <p>Materi dan sumber belajar di Rumah Pendidikan.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://rumah.pendidikan.go.id/ruang/murid">Buka ruang belajar</a>
+          <p>Materi dan sumber belajar dari Rumah Pendidikan.</p>
+          <a class="btn" href="https://rumah.pendidikan.go.id/ruang/murid" target="_blank" rel="noopener">Buka ruang belajar</a>
         </div>
       </div>
     </section>
 
-    <!-- KELAS 7 -->
     <section id="kelas7">
       <h2>Kelas 7 • Materi Umum</h2>
       <div class="grid">
         <div class="card">
-          <span class="pill">Materi</span>
-          <p>Pembelajaran interaktif untuk berbagai topik dasar di kelas 7.</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/VIDEO_KELAS7">Tonton Penjelasan</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/FILE_MATERI_KELAS7" style="margin-left:6px">Unduh Materi (PDF)</a>
+          <p><b>Tujuan:</b> Mengenal konsep dasar dan memahami isi teks.</p>
+          <a class="btn" href="https://youtu.be/VIDEO_KELAS7" target="_blank">Tonton Penjelasan</a>
         </div>
         <div class="card">
-          <span class="pill">Evaluasi</span>
-          <p>Kuis dan latihan otomatis.</p>
-          <div class="embed">
-            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS7/viewform?embedded=true" loading="lazy">Memuat…</iframe>
-          </div>
+          <p><b>Lembar Materi:</b> Contoh bacaan untuk latihan.</p>
+          <a class="btn" href="https://drive.google.com/DRIVE_KELAS7" target="_blank">Unduh Materi (PDF)</a>
         </div>
       </div>
     </section>
 
-    <!-- KELAS 8 -->
     <section id="kelas8">
-      <h2>Kelas 8 • Materi Pengembangan</h2>
+      <h2>Kelas 8 • Materi Umum</h2>
       <div class="grid">
         <div class="card">
-          <p>Materi dan penugasan tematik kelas 8.</p>
-          <a class="btn" target="_blank" href="https://youtu.be/VIDEO_KELAS8">Tonton Penjelasan</a>
+          <p><b>Tujuan:</b> Melatih kemampuan analisis dan menulis paragraf argumentatif.</p>
+          <a class="btn" href="https://youtu.be/VIDEO_KELAS8" target="_blank">Tonton Penjelasan</a>
         </div>
         <div class="card">
-          <p>Latihan online dengan penilaian otomatis.</p>
-          <div class="embed">
-            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS8/viewform?embedded=true" loading="lazy">Memuat…</iframe>
-          </div>
+          <p><b>Lembar Materi:</b> Teks latihan dan panduan.</p>
+          <a class="btn" href="https://drive.google.com/DRIVE_KELAS8" target="_blank">Unduh Materi (PDF)</a>
         </div>
       </div>
     </section>
 
-    <!-- KELAS 9 -->
     <section id="kelas9">
-      <h2>Kelas 9 • Materi Lanjutan</h2>
+      <h2>Kelas 9 • Materi Umum</h2>
       <div class="grid">
         <div class="card">
-          <p>Materi, latihan, dan video pembelajaran kelas 9.</p>
-          <a class="btn" href="https://youtu.be/VIDEO_KELAS9" target="_blank">Tonton Video</a>
+          <p><b>Tujuan:</b> Menyusun teks eksposisi dan melakukan evaluasi isi bacaan.</p>
+          <a class="btn" href="https://youtu.be/VIDEO_KELAS9" target="_blank">Tonton Penjelasan</a>
         </div>
         <div class="card">
-          <p>Evaluasi dan latihan pemantapan ujian.</p>
-          <div class="embed">
-            <iframe src="https://docs.google.com/forms/d/e/FORM_ID_KELAS9/viewform?embedded=true" loading="lazy">Memuat…</iframe>
-          </div>
+          <p><b>Lembar Materi:</b> Contoh bahan evaluasi belajar mandiri.</p>
+          <a class="btn" href="https://drive.google.com/DRIVE_KELAS9" target="_blank">Unduh Materi (PDF)</a>
         </div>
       </div>
     </section>
 
-    <!-- REFLEKSI -->
     <section id="refleksi">
-      <h2>Refleksi Pembelajaran</h2>
+      <h2>Refleksi Guru</h2>
       <div class="card">
-        <p>Catat hasil belajar, kendala, dan rencana perbaikan.</p>
-        <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank">Isi Refleksi</a>
+        <p>Catat keberhasilan, tantangan, dan rencana perbaikan pembelajaran.</p>
+        <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank" rel="noopener">Isi Refleksi</a>
       </div>
     </section>
 
-    <!-- GALERI -->
     <section id="galeri">
       <h2>Galeri Kegiatan</h2>
-      <div class="three">
-        <div class="card">
-          <p>Dokumentasi kegiatan belajar.</p>
-          <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank">Buka Galeri</a>
-        </div>
-        <div class="card">
-          <p>Poster dan promosi inovasi pembelajaran.</p>
-          <a class="btn" href="https://instagram.com/AKUN_SEKOLAH" target="_blank">Lihat Media Sosial</a>
-        </div>
+      <div class="card">
+        <p>Dokumentasi pembelajaran, proyek siswa, dan kegiatan inovatif.</p>
+        <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank" rel="noopener">Buka Galeri</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div>© 2025 Kelas Interaktif Pintar – Portal Pembelajaran SMP</div>
-      <div style="margin-top:8px">
-        <img alt="QR Kelas Interaktif" width="120" height="120"
-          src="https://api.qrserver.com/v1/create-qr-code/?data=https://hafizahhafiz240717-ai.github.io/kelas-interaktif-pintar/&size=120x120">
-      </div>
-      <div class="note" style="margin-top:6px">Scan untuk membuka situs di ponsel</div>
-    </div>
-  </footer>
-
-  <script>
-    // ubah warna header saat discroll
-    addEventListener('scroll', () => {
-      document.querySelector('header').classList.toggle('scrolled', scrollY > 50);
-    });
-    // animasi card muncul halus
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
-    }, {threshold: .12});
-    document.querySelectorAll('.card').forEach(el=>io.observe(el));
-  </script>
+  <footer>© 2025 Portal Pembelajaran SMP • Kelas Interaktif Pintar</footer>
 </body>
 </html>
