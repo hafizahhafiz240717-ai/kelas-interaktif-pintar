@@ -1,15 +1,107 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kelas Interaktif Pintar</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelas Interaktif Pintar – Bahasa Indonesia VII</title>
+  <meta name="description" content="Mini web pembelajaran Bahasa Indonesia Kelas VII dengan materi, evaluasi otomatis, dan refleksi guru."/>
+  <style>
+    :root{
+      --coral:#f4a261; --coral-2:#e76f51; --gold:#ffd08a; --ink:#1f2d3a; --paper:#fff7ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Calibri,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,var(--paper),#ffe6cc);color:var(--ink)}
+    header{position:sticky;top:0;background:var(--coral);color:#fff;padding:14px 16px;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .wrap{max-width:980px;margin:0 auto;padding:0 14px}
+    .brand{font-weight:700;font-size:1.1rem;letter-spacing:.3px}
+    nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    nav a{background:var(--gold);color:#472b00;text-decoration:none;padding:8px 12px;border-radius:999px;font-weight:700}
+    main{padding:22px 0}
+    h1{margin:10px 0 0}
+    h2{color:#b44d2b;margin:12px 0}
+    .card{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);padding:18px;margin:14px 0}
+    .btn{display:inline-block;background:var(--coral-2);color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:700}
+    .btn:hover{filter:brightness(.95)}
+    .grid{display:grid;gap:14px}
+    @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
+    footer{background:var(--coral);color:#fff;text-align:center;padding:12px;margin-top:24px}
+    .note{font-size:.9rem;opacity:.85}
+    .embed{position:relative;width:100%;padding-top:60%}
+    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
+    ul.clean{margin:0 0 6px 18px}
+  </style>
 </head>
-<body style="font-family: Calibri; text-align: center; background-color: #fff7eb; padding: 50px;">
-  <h1 style="color: #e76f51;">Selamat Datang di Kelas Interaktif Pintar</h1>
-  <p>Website ini dibuat untuk pembelajaran Bahasa Indonesia Kelas VII.</p>
-  <p>Guru: <b>Hafizah Hafiz</b></p>
-  <hr>
-  <p>Silakan buka halaman ini lewat QR Code untuk belajar interaktif!</p>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">Kelas Interaktif Pintar • Bahasa Indonesia Kelas VII</div>
+      <nav>
+        <a href="#materi">Materi</a>
+        <a href="#evaluasi">Evaluasi</a>
+        <a href="#refleksi">Refleksi</a>
+        <a href="#galeri">Galeri</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>Selamat Datang</h1>
+      <p class="note">Portal ringkas untuk belajar mandiri, latihan otomatis, dan dokumentasi inovasi guru. Akses lewat QR di kelas, atau langsung dari tautan ini.</p>
+    </section>
+
+    <section id="materi">
+      <h2>Materi • Teks Deskriptif</h2>
+      <div class="grid">
+        <div class="card">
+          <p><b>Tujuan:</b> Mengidentifikasi ciri-ciri dan menyusun paragraf deskriptif.</p>
+          <ul class="clean">
+            <li>Fokus pancaindra</li>
+            <li>Detail spesifik</li>
+            <li>Kosakata deskriptif</li>
+          </ul>
+          <!-- GANTI LINK VIDEO -->
+          <a class="btn" href="https://youtu.be/VIDEO_KAMU" target="_blank" rel="noopener">Tonton Penjelasan</a>
+        </div>
+        <div class="card">
+          <p><b>Lembar Materi:</b> contoh bacaan “Lingkungan Sekolahku.”</p>
+          <!-- GANTI LINK DRIVE -->
+          <a class="btn" href="https://drive.google.com/FILE_MATERI" target="_blank" rel="noopener">Unduh Materi (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="evaluasi">
+      <h2>Evaluasi Otomatis</h2>
+      <div class="card">
+        <p>Kerjakan kuis berikut. Nilai masuk otomatis ke spreadsheet guru.</p>
+        <!-- GANTI FORM_ID DENGAN ID GOOGLE FORM KAMU -->
+        <div class="embed">
+          <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true">Memuat…</iframe>
+        </div>
+        <p class="note">Jika tidak tampil, <a href="https://forms.gle/LINK_FORM" target="_blank" rel="noopener">buka Form di tab baru</a>.</p>
+      </div>
+    </section>
+
+    <section id="refleksi">
+      <h2>Refleksi Guru</h2>
+      <div class="card">
+        <p>Catat apa yang berhasil, tantangan, dan perbaikan pertemuan berikutnya.</p>
+        <!-- GANTI LINK REFLEKSI -->
+        <a class="btn" href="https://forms.gle/LINK_REFLEKSI" target="_blank" rel="noopener">Isi Refleksi</a>
+      </div>
+    </section>
+
+    <section id="galeri">
+      <h2>Galeri Kegiatan</h2>
+      <div class="card">
+        <p>Dokumentasi penggunaan QR, latihan, dan karya siswa.</p>
+        <!-- GANTI FOLDER DRIVE -->
+        <a class="btn" href="https://drive.google.com/DRIVE_GALERI" target="_blank" rel="noopener">Buka Folder Galeri</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Kelas Interaktif Pintar • SMPN 4 Batu Ampar</footer>
 </body>
 </html>
