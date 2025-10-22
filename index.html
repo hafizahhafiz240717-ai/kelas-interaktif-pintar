@@ -19,16 +19,18 @@
       background:linear-gradient(135deg,var(--paper),#ffe6cc);
     }
     /* latar belakang */
-    body::before{
-      content:""; position:fixed; inset:0; z-index:-2;
-      background:url('bg-pmd.jpg') center/cover no-repeat;
-      filter:saturate(1.06) contrast(1.03);
-    }
-    body::after{
-      content:""; position:fixed; inset:0; z-index:-1;
-      background:radial-gradient(1100px 560px at 12% 8%,rgba(255,255,255,.92),rgba(255,255,255,.70) 40%,rgba(255,255,255,.48) 70%,rgba(255,255,255,.22)),
-                 linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,.9));
-      pointer-events:none;
+  body::before{
+  content:""; position:fixed; inset:0; z-index:-2;
+  background:url('bg-pmd.jpg') center/cover no-repeat;
+  filter:brightness(1.25) saturate(1.1);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1;
+  background:radial-gradient(1100px 560px at 12% 8%,rgba(255,255,255,.88),rgba(255,255,255,.60) 40%,rgba(255,255,255,.40) 70%,rgba(255,255,255,.20)),
+             linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.75));
+  pointer-events:none;
+}
+
     }
 
     header{
